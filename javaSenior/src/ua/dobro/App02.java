@@ -4,11 +4,14 @@ public class App02 {
 
     public static void main(String[] args) {
         Laptop laptop = new Laptop();
-        System.out.println(laptop.GetState());
-        laptop.TurnOn();
-        System.out.println(laptop.GetState());
-        laptop.TurnOff();
-        System.out.println(laptop);
+        System.out.println(laptop.toString());
+        laptop.setCPU(3.5);
+        laptop.setLaptopModel("MacBookRetina");
+        laptop.setRAM(32);
+        System.out.println(laptop.getCPU());
+        System.out.println(laptop.getLaptopModel());
+        System.out.println(laptop.getRAM());
+        System.out.println(laptop.isLaptopState());
     }
 
 }
@@ -32,16 +35,64 @@ class Laptop {
         this.laptopModel = laptopModel;
     }
 
-    public void TurnOn() {
-        laptopState = true;
+    /**
+     * @return the rAM
+     */
+    public int getRAM() {
+        return RAM;
     }
-    
-    public void TurnOff() {
-        laptopState = false;
+
+    /**
+     * @param rAM
+     *            the rAM to set
+     */
+    public void setRAM(int rAM) {
+        RAM = rAM;
     }
-    
-    public String GetState() {
-        return (laptopState) ? "TurnedOn" : "TurnedOff";
+
+    /**
+     * @return the cPU
+     */
+    public double getCPU() {
+        return CPU;
+    }
+
+    /**
+     * @param cPU
+     *            the cPU to set
+     */
+    public void setCPU(double cPU) {
+        CPU = cPU;
+    }
+
+    /**
+     * @return the laptopModel
+     */
+    public String getLaptopModel() {
+        return laptopModel;
+    }
+
+    /**
+     * @param laptopModel
+     *            the laptopModel to set
+     */
+    public void setLaptopModel(String laptopModel) {
+        this.laptopModel = laptopModel;
+    }
+
+    /**
+     * @return the laptopState
+     */
+    public boolean isLaptopState() {
+        return laptopState;
+    }
+
+    /**
+     * @param laptopState
+     *            the laptopState to set
+     */
+    public void setLaptopState(boolean laptopState) {
+        this.laptopState = laptopState;
     }
 
     @Override

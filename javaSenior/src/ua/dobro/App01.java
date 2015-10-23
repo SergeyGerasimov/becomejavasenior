@@ -8,7 +8,7 @@ public class App01 {
         String equipmentRAM = "RAMinMB";
         int ramSizeGB = 16;
         String equipmentCPU = "CPUinGHz";
-        int cpuSpeedGHz = 4;
+        int cpuSpeedGHz = 3;
         String equipmentHardDrive = "HardDriveInGB";
         int hardDriveCapacityGB = 500;
         String equipmentVideoCard = "VideoCardinMB";
