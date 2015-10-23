@@ -12,6 +12,7 @@ public class App02 {
         System.out.println(laptop.getLaptopModel());
         System.out.println(laptop.getRAM());
         System.out.println(laptop.isLaptopState());
+        System.out.println(laptop);
     }
 
 }
@@ -20,19 +21,21 @@ class Laptop {
     private static final int DEFAULT_RAM_GB = 16;
     private static final double DEFAULT_CPU_GHz = 3.3;
     private static final String DEFAULT_laptopModel = "MacBookPro";
+    private static final boolean DEFAULT_laptopState = false;
     private int RAM;
     private double CPU;
     private String laptopModel;
-    private boolean laptopState = false;
+    private boolean laptopState;
 
     Laptop() {
-        this(DEFAULT_RAM_GB, DEFAULT_CPU_GHz, DEFAULT_laptopModel);
+        this(DEFAULT_RAM_GB, DEFAULT_CPU_GHz, DEFAULT_laptopModel, DEFAULT_laptopState);
     }
 
-    Laptop(int RAM, double CPU, String laptopModel) {
+    Laptop(int RAM, double CPU, String laptopModel, boolean laptopState) {
         this.RAM = RAM;
         this.CPU = CPU;
         this.laptopModel = laptopModel;
+        this.laptopState = laptopState;
     }
 
     /**
