@@ -49,7 +49,6 @@ class FileManager {
         try (Stream<String> input = Files.lines(Paths.get(inputFile));
                 PrintWriter output = new PrintWriter(outputFile)) {
             input.forEach(output::println);
-            output.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -64,7 +63,6 @@ class FileManager {
         try (BufferedReader input = Files.newBufferedReader(Paths.get(inputFile));
                 PrintWriter output = new PrintWriter(outputFile)) {
             input.lines().forEach(output::println);
-            output.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -84,8 +82,6 @@ class FileManager {
                 }
                 output.println();
             }
-            input.close();
-            output.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
