@@ -12,8 +12,8 @@ public class App03 {
 
     public static void main(String[] args) {
         Instant previous = Instant.now();
-        FileManager.makeCopyLambdaBuffer("first.txt", "second.txt");
-        System.out.println(ChronoUnit.MILLIS.between(previous, Instant.now()) + " ms");
+        FileManager.makeCopyLambda("first.txt", "second.txt");
+        System.out.println(ChronoUnit.SECONDS.between(previous, Instant.now()) + " s");
     }
 }
 
@@ -32,11 +32,8 @@ class FileManager {
             while ((c = input.read()) != -1) {
                 output.write(c);
             }
-
             input.close();
             output.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,8 +46,6 @@ class FileManager {
         try (Stream<String> input = Files.lines(Paths.get(inputFile));
                 PrintWriter output = new PrintWriter(outputFile)) {
             input.forEach(output::println);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,8 +58,6 @@ class FileManager {
         try (BufferedReader input = Files.newBufferedReader(Paths.get(inputFile));
                 PrintWriter output = new PrintWriter(outputFile)) {
             input.lines().forEach(output::println);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -82,8 +75,6 @@ class FileManager {
                 }
                 output.println();
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
