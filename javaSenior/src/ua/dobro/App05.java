@@ -5,7 +5,7 @@ public class App05 {
         LaptopBrandnew laptop = new LaptopBrandnew();
         OSystem system = new OSystem();
         system.setFileManager(new FileManager());
-        laptop.setOSystem(system);
+        laptop.setOSystem(new OSystem());
     }
 }
 
