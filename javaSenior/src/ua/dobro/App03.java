@@ -8,17 +8,17 @@ import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-public class App03 {
+class App03 {
 
     public static void main(String[] args) {
         Instant previous = Instant.now();
-        FileManager.makeCopyLambda("first.txt", "second.txt");
+        FileManagerM.makeCopyLambda("first.txt", "second.txt");
         System.out.println(ChronoUnit.SECONDS.between(previous, Instant.now()) + " s");
     }
 }
 
-class FileManager {
-    public FileManager() {
+class FileManagerM {
+    public FileManagerM() {
     }
 
     public static void makeCopy(String inputFile, String outputFile) {

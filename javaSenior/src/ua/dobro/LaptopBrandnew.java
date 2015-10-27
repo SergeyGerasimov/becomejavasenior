@@ -1,14 +1,6 @@
 package ua.dobro;
 
-
-public class App05 {
-    public static void main(String[] args) {
-    }
-}
-
-
-
-class LaptopBrand {
+public class LaptopBrandnew {
     private static final int DEFAULT_RAM_GB = 16;
     private static final double DEFAULT_CPU_GHz = 3.3;
     private static final String DEFAULT_laptopModel = "MacBookPro";
@@ -19,11 +11,11 @@ class LaptopBrand {
     private boolean laptopState;
     private OSystem OSystem = null;
 
-    LaptopBrand() {
+    LaptopBrandnew() {
         this(DEFAULT_RAM_GB, DEFAULT_CPU_GHz, DEFAULT_laptopModel, DEFAULT_laptopState);
     }
 
-    LaptopBrand(int RAM, double CPU, String laptopModel, boolean laptopState) {
+    LaptopBrandnew(int RAM, double CPU, String laptopModel, boolean laptopState) {
         this.RAM = RAM;
         this.CPU = CPU;
         this.laptopModel = laptopModel;
@@ -108,6 +100,18 @@ class LaptopBrand {
         }
         return "Laptop [RAM=" + RAM + ", CPU=" + CPU + ", laptopModel=" + laptopModel + ", laptopState="
                 + laptopStateName + "]";
+    }
+
+    public static void main(String[] args) throws LaptopAccessException {
+        LaptopBrandnew laptop = new LaptopBrandnew();
+        laptop.setOSystem(new OSystem());
+        laptop.setLaptopState(false);
+        laptop.getOSystem().setFileManager(new FileManager(laptop));
+        try {
+            laptop.getOSystem().getFileManager().makeCopyLambda("first.txt", "second.txt");
+        } catch (Exception e) {
+            throw new LaptopAccessException(e);
+        }
     }
 
 }
