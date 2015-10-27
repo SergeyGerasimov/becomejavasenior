@@ -107,11 +107,7 @@ public class LaptopBrandnew {
         laptop.setOSystem(new OSystem());
         laptop.setLaptopState(false);
         laptop.getOSystem().setFileManager(new FileManager(laptop));
-        try {
-            laptop.getOSystem().getFileManager().makeCopyLambda("first.txt", "second.txt");
-        } catch (Exception e) {
-            throw new LaptopAccessException(e);
-        }
+        laptop.getOSystem().getFileManager().makeCopyLambda("first.txt", "second.txt");
     }
 
 }

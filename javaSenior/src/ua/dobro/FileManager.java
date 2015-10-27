@@ -12,7 +12,7 @@ public class FileManager {
     }
     public void makeCopyLambda(String inputFile, String outputFile) throws LaptopAccessException{
         if (!laptop.isLaptopState()) {
-            throw new IllegalStateException("Laptop is off");
+            throw new LaptopAccessException("Laptop is off");
         }
         if (inputFile == outputFile) {
             return;
