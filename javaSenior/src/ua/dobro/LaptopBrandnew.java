@@ -102,14 +102,14 @@ public class LaptopBrandnew {
                 + laptopStateName + "]";
     }
 
-    public static void main(String[] args) throws LaptopAccessException {
+    public static void main(String[] args) throws LaptopAccessException  {
         LaptopBrandnew laptop = new LaptopBrandnew();
         laptop.setOSystem(new OSystem());
         laptop.setLaptopState(false);
         laptop.getOSystem().setFileManager(new FileManager(laptop));
         try {
             laptop.getOSystem().getFileManager().makeCopyLambda("first.txt", "second.txt");
-        } catch (Exception e) {
+        } catch (IllegalStateException e) {
             throw new LaptopAccessException(e);
         }
     }
