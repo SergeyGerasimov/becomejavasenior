@@ -11,8 +11,8 @@ public class FileManager {
         this.laptop = laptop;
     }
     public void makeCopyLambda(String inputFile, String outputFile) throws LaptopAccessException{
-        if (!laptop.isLaptopState()) {
-            throw new LaptopAccessException("Laptop is off");
+        if(!laptop.isLaptopState()) {
+            throw new IllegalStateException("Laptop is off");
         }
         if (inputFile == outputFile) {
             return;
@@ -24,4 +24,6 @@ public class FileManager {
             e.printStackTrace();
         }
     }
+
+    
 }
