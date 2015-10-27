@@ -110,7 +110,7 @@ public class LaptopBrandnew {
         try {
             laptop.getOSystem().getFileManager().makeCopyLambda("first.txt", "second.txt");
         } catch (LaptopAccessException e) {
-            // do something
+            e.printStackTrace();
         }
     }
 
