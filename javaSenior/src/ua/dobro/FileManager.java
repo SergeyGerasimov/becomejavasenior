@@ -7,12 +7,14 @@ import java.util.stream.Stream;
 
 public class FileManager {
     private LaptopBrandnew laptop;
+
     public FileManager(LaptopBrandnew laptop) {
         this.laptop = laptop;
     }
-    public void makeCopyLambda(String inputFile, String outputFile) throws LaptopAccessException{
-        if(!laptop.isLaptopState()) {
-            throw new IllegalStateException("Laptop is off");
+
+    public void makeCopyLambda(String inputFile, String outputFile) throws LaptopAccessException {
+        if (!laptop.isLaptopState()) {
+            throw new LaptopAccessException();
         }
         if (inputFile == outputFile) {
             return;
@@ -25,5 +27,4 @@ public class FileManager {
         }
     }
 
-    
 }
