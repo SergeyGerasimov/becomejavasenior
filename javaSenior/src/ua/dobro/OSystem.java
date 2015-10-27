@@ -2,6 +2,14 @@ package ua.dobro;
 
 public class OSystem {
     private FileManager fileManager;
+    private LaptopBrandnew laptop;
+
+    public OSystem(LaptopBrandnew laptop) throws LaptopAccessException {
+        if (!laptop.isLaptopState()) {
+            throw new LaptopAccessException();
+        }
+        this.laptop = laptop;
+    }
 
     /**
      * @return the fileManager
