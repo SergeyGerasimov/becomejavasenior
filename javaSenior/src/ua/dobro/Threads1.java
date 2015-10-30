@@ -25,14 +25,13 @@ class MessageLoop implements Runnable {
     private String[] messagesArray = { "First attempt", "Second attempt", "Third Attempt" };
 
     public void run() {
-        for (int i = 0; i < messagesArray.length - 1; i++) {
-            System.out.println(currentThread().getName() + " : " + messagesArray[i]);
+        for (String word : messagesArray) {
             try {
                 sleep(4000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println(currentThread().getName() + " : " + word);
         }
-        System.out.println(currentThread().getName() + " : " + messagesArray[messagesArray.length - 1]);
     }
 }
