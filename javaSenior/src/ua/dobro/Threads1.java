@@ -3,7 +3,7 @@ package ua.dobro;
 import static java.lang.Thread.*;
 
 public class Threads1 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Thread t1 = new Thread();
         Thread t2 = new Thread(new MessageLoop());
         System.out.println(t1.getName() + " : Starting of the MessageLoop thread");
@@ -29,7 +29,7 @@ class MessageLoop implements Runnable {
             try {
                 sleep(4000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println(currentThread().getName() + " : The task has not been finished");
             }
             System.out.println(currentThread().getName() + " : " + word);
         }
