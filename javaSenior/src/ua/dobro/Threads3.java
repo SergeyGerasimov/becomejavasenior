@@ -2,7 +2,6 @@ package ua.dobro;
 
 import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
-
 import java.util.Scanner;
 
 public class Threads3 {
