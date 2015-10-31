@@ -10,7 +10,16 @@ public class Threads3 {
         System.out.println("Please, enter waiting time for the second thread in s:");
         Scanner scan = new Scanner(System.in);
         long time = 0;
-        time = scan.nextInt() * 1000;
+        time = scan.nextInt();
+        if (time <= 0) {
+            scan.close();
+            throw new IllegalArgumentException("You entered zero or negative value " + time + "s");
+        }
+        if (time >= 60) {
+            time = 60 * 1000;
+        } else {
+            time = time * 1000;
+        }
         scan.close();
         Thread t1 = Thread.currentThread();
         Thread t2 = new Thread(new MessageLoopNew());
