@@ -22,14 +22,20 @@ public class Threads3 {
         scan.close();
         Thread t1 = Thread.currentThread();
         Thread t2 = new Thread(new MessageLoopNew());
-        System.out.println(t1.getName() + "-Thread : Starting of the MessageLoop thread");
-        System.out.println(t1.getName() + "-Thread : Wait until the end of a second thread");
+        printMessages.printMessage(t1, "Starting of the MessageLoop thread");
+        printMessages.printMessage(t1, "Wait until the end of a second thread");
         t2.start();
         t2.join(time); // waiting for the 2-nd thread
         if (t2.isAlive()) {
-            System.out.println(t1.getName() + "-Thread : I won't wait any longer!");
+            printMessages.printMessage(t1, "I won't wait any longer!");
         }
         t2.interrupt();
+    }
+}
+
+class printMessages {
+    public static void printMessage(Thread t, String message) {
+        System.out.println(t.getName() + "        : " + message);
     }
 }
 
