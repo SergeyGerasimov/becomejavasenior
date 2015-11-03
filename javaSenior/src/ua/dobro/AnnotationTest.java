@@ -1,6 +1,7 @@
 package ua.dobro;
 
 import java.lang.reflect.Method;
+import java.lang.annotation.*;
 import java.util.Arrays;
 
 public class AnnotationTest {
@@ -39,4 +40,16 @@ public class AnnotationTest {
             System.out.println(s);
         }
     }
+}
+
+@Documented
+@Inherited
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+@interface NewAnnotation {
+    String name();
+
+    boolean field1() default true;
+
+    boolean field2() default true;
 }
