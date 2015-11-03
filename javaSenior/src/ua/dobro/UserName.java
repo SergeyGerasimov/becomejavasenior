@@ -1,7 +1,6 @@
 package ua.dobro;
 
 import java.util.Scanner;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserName {
@@ -17,10 +16,13 @@ public class UserName {
     }
 
     public static boolean checkUserNameRegex(String login) {
-        String userNamePattern = "^[\\w_]{4,16}$";
-        Pattern pattern = Pattern.compile(userNamePattern, Pattern.UNICODE_CHARACTER_CLASS);
-        Matcher matcher = pattern.matcher(login);
-        return matcher.matches();
+        return Pattern.matches("^[\\w_]{4,16}$", login);
+        // internationalized solution
+        // String userNamePattern = "^[\\w_]{4,16}$";
+        // Pattern pattern = Pattern.compile(userNamePattern,
+        // Pattern.UNICODE_CHARACTER_CLASS);
+        // Matcher matcher = pattern.matcher(login);
+        // return matcher.matches();
     }
 
     public static boolean checkUserName(String login) {
@@ -28,10 +30,27 @@ public class UserName {
             return false;
         }
         for (char ch : login.toCharArray()) {
-            if (!Character.isLetterOrDigit(ch) && ch != '_') {
-                return false;
+            if (ch == '_') {
+                continue;
             }
+            if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) {
+                continue;
+            }
+            if (ch >= '0' && ch <= '9') {
+                continue;
+            }
+            return false;
         }
         return true;
+        // internationalized solution
+        // if (login.length() < 4 || login.length() > 16) {
+        // return false;
+        // }
+        // for (char ch : login.toCharArray()) {
+        // if (!Character.isLetterOrDigit(ch) && ch != '_') {
+        // return false;
+        // }
+        // }
+        // return true;
     }
 }
