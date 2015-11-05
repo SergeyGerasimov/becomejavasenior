@@ -48,9 +48,7 @@ public class StAXParser {
             }
         }
         computer = null;
-        for (Computer comp : computersCatalog) {
-            System.out.println(comp);
-        }
+        computersCatalog.stream().forEach(System.out :: println);
     }
 }
 
