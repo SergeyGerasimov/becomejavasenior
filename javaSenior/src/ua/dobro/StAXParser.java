@@ -1,54 +1,61 @@
 package ua.dobro;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.EndElement;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
 public class StAXParser {
-    public static void main(String[] args) throws FileNotFoundException, XMLStreamException {
+    public static void main(String[] args) {
+        List<Computer> computerCatalog = parseXML("computerStore.xml");
+        computerCatalog.stream().forEach(System.out::println);
+    }
+
+    public static List<Computer> parseXML(String xml) {
         List<Computer> computersCatalog = new LinkedList<>();
-        XMLInputFactory f = XMLInputFactory.newInstance();
-        XMLEventReader reader = f.createXMLEventReader("computerStore.xml", new FileInputStream("computerStore.xml"));
-        XMLEvent event = null;
-        StartElement startElement = null;
-        Computer computer = null;
-        while (reader.hasNext()) {
-            event = reader.nextEvent();
-            if (event.isStartElement()) {
-                startElement = event.asStartElement();
-                if (startElement.getName().getLocalPart().equals("computer")) {
-                    computer = new Computer();
-                    computer.setComputer(startElement.getName().getLocalPart());
-                    computer.setID(Integer.parseInt(startElement.getAttributeByName(new QName("id")).getValue()));
-                } else if (startElement.getName().getLocalPart().equals("title")) {
-                    event = reader.nextEvent();
-                    computer.setTitle(event.asCharacters().getData());
-                } else if (startElement.getName().getLocalPart().equals("type")) {
-                    event = reader.nextEvent();
-                    computer.setType(event.asCharacters().getData());
-                } else if (startElement.getName().getLocalPart().equals("amount")) {
-                    event = reader.nextEvent();
-                    computer.setAmount(Integer.parseInt(event.asCharacters().getData()));
+        try (FileInputStream inputStream = new FileInputStream(xml)) {
+            XMLInputFactory f = XMLInputFactory.newInstance();
+            XMLEventReader reader = f.createXMLEventReader(xml, inputStream);
+            XMLEvent event = null;
+            StartElement startElement = null;
+            Computer computer = null;
+            while (reader.hasNext()) {
+                event = reader.nextEvent();
+                if (event.isStartElement()) {
+                    startElement = event.asStartElement();
+                    if (startElement.getName().getLocalPart().equals("computer")) {
+                        computer = new Computer();
+                        computer.setComputer(startElement.getName().getLocalPart());
+                        computer.setID(Integer.parseInt(startElement.getAttributeByName(new QName("id")).getValue()));
+                    } else if (startElement.getName().getLocalPart().equals("title")) {
+                        event = reader.nextEvent();
+                        computer.setTitle(event.asCharacters().getData());
+                    } else if (startElement.getName().getLocalPart().equals("type")) {
+                        event = reader.nextEvent();
+                        computer.setType(event.asCharacters().getData());
+                    } else if (startElement.getName().getLocalPart().equals("amount")) {
+                        event = reader.nextEvent();
+                        computer.setAmount(Integer.parseInt(event.asCharacters().getData()));
+                    }
+                }
+                if (event.isEndElement()) {
+                    EndElement endElement = event.asEndElement();
+                    if (endElement.getName().getLocalPart().equals("computer")) {
+                        computersCatalog.add(computer);
+                    }
                 }
             }
-            if (event.isEndElement()) {
-                EndElement endElement = event.asEndElement();
-                if (endElement.getName().getLocalPart().equals("computer")) {
-                    computersCatalog.add(computer);
-                }
-            }
+            computer = null;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        computer = null;
-        computersCatalog.stream().forEach(System.out :: println);
+        return computersCatalog;
     }
 }
 
